@@ -4,16 +4,17 @@
   "description": "Sistema de Control para Agroveterinaria Nicol G.",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/index.js",
     "dev": "nodemon src/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GermanCode/agoveterinaria-nicol.git"
+    "url": "https://github.com/GermanCode/agoveterinaria-nicol.git"
   },
   "keywords": [
     "AgroVeterinaria"
   ],
-  "author": "GermanCode",
+  "author": "GermanCode And Roland2393",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GermanCode/agoveterinaria-nicol/issues"
