@@ -8,13 +8,12 @@ passport.use('local.signin', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, async (req, identificacion, password, done) => {
-    console.log(req.body);
     const rows = await pool.query('SELECT * FROM persona WHERE identificacion = ?', [identificacion]);
     if (rows.length > 0) {
         const persona = rows[0];
         const validPassword = await helpers.mathPassword(password, persona.password);
         if(validPassword){
-            done(null, persona, req.flash('success', 'Welcome' + persona.identificacion));
+            done(null, persona, req.flash('success', 'Welcome' + persona.Identificacion));
         } else {
             done(null, false, req.flash('message', 'Incorrect Password'));
         }
@@ -44,11 +43,12 @@ passport.use('local.signup', new LocalStrategy({
 }));
 
 passport.serializeUser( async (user, done) => {
-    done(null, user.identificacion);
+    done(null, user.Identificacion);
 });
 
-passport.deserializeUser( async (identificacion, done) => {
-    const rows = await pool.query('SELECT * FROM persona WHERE identificacion = ?', [identificacion]);
+passport.deserializeUser( async (Identificacion, done) => {
+    const rows = await pool.query('SELECT * FROM persona WHERE identificacion = ?', [Identificacion]);
+    console.log(rows);
     done(null, rows[0]);
  });
 

@@ -5,4 +5,11 @@ module.exports = {
         password: 'f7tnaj4rgvyg7mni',
         database: 'ttmpnrh4roz1ljz8'
     }
+
+    /*database: {
+        host: 'localhost',
+        user: 'root',
+        password: 'root',
+        database: 'database_agrovet'
+    }*/
 }
