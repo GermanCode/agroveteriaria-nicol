@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 
 //Routes
 app.use(require('./routes'));
-app.use('/users', require('./routes/users'));
+app.use('/cerdos', require('./routes/cerdos'));
 app.use(require('./routes/authentication'));
 app.use(require('./routes/empleados'));
 

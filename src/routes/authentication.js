@@ -4,7 +4,6 @@ const passport = require('passport');
 const { isLoggedIn, isNotLoggedIn} = require('../lib/auth');
 
 router.get('/signup',  (req, res) => {
-    console.log('hola')
     res.render('auth/signup');
 });
 

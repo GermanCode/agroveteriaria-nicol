@@ -1,0 +1,28 @@
+<div class="index container p-4">
+    <div class="row">
+        {{#each labores}}
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <a href="/empleado_id" target="_blank">
+                        <h3 class="card-title text-uppercase">
+                            {{Nombres}} &nbsp; {{Apellidos}}
+                        </h3>
+                    </a>
+                    <p class= "m-2">{{Telefono}}</p>
+                    <p>{{timeago created_at}}</p>
+                    <a href="/links/delete/{{id_links}}" class="btn btn-danger">Eliminar Empleado</a>
+                    <a href="/links/edit/{{id_links}}" class="btn btn-secondary">Modificar Empleado</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay Link's guardados aún... -- There are not links saved yet...</p>
+                    <a href="/links/add">Create One!</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

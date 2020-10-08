@@ -1,38 +1,40 @@
-<div class="index container p-4">
+<div class="index container p-4" style="overflow: scroll;">
   <div class="row">
     <div class="col-md-4 mx-auto">
       <div class="card text-center">
         <div class="card-header">
-          <h3>Registrarse</h3>
+          <h4>Registro de Empleados</h4>
         </div>
         <div class="card-body">
           <form action="/signup" method="POST">
             <div class="form-group">
+              <h6>Identificacion:</h6>
               <input type="number" name="identificacion" placeholder="Identificacion" class="form-control" autofocus>
             </div>
             <div class="form-group">
+              <h6>Nombres:</h6>
               <input type="text" name="nombres" placeholder="Nombres" class="form-control">
             </div>
             <div class="form-goup">
+              <h6>Apellidos:</h6>
               <input type="text" name="apellidos" class="form-control" placeholder="Apellidos">
             </div>
             <div class="form-group"></div>
             <div class="form-goup">
+              <h6>Contraseña:</h6>
               <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
             </div>
-
             <div class="form-group"></div>
             <div class="form-group">
+              <h6>Fecha de Nacimiento:</h6>
               <input type="date" id="fechaNacimiento" placeholder="Fecha de Nacimiento" name="fechaNacimiento" class="form-control"/>     
             </div>
-
             <div class="form-group"></div>
-
             <div class="form-group">
+              <h6>Telefono:</h6>
               <input type="number" name="telefono" placeholder="Telefono" class="form-control" required>
             </div>
-
-
+            <div class="form-group"></div>
             <div class="form-goup">
               <button class="btn btn-success btn-block">
                 OK

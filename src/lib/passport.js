@@ -13,12 +13,12 @@ passport.use('local.signin', new LocalStrategy({
         const persona = rows[0];
         const validPassword = await helpers.mathPassword(password, persona.password);
         if(validPassword){
-            done(null, persona, req.flash('success', 'Welcome' + persona.Identificacion));
+            done(null, persona, req.flash('success', 'Bienvenido ' + persona.identificacion));
         } else {
-            done(null, false, req.flash('message', 'Incorrect Password'));
+            done(null, false, req.flash('message', 'Contraseña Incorrecta'));
         }
     }else {
-            return done(null, false, req.flash('message', 'User don´t finded'));
+            return done(null, false, req.flash('message', 'Usuario no Encontrado'));
     }
 }));
 
@@ -38,17 +38,17 @@ passport.use('local.signup', new LocalStrategy({
     };
     newUser.password = await helpers.encryptPassword(password);
     const result = await pool.query('INSERT INTO persona SET ?', [newUser]);
-    newUser.identificacion = result.insertId;
+    console.log(result);
     return done(null, newUser);
 }));
 
 passport.serializeUser( async (user, done) => {
-    done(null, user.Identificacion);
+    done(null, user.identificacion);
 });
 
-passport.deserializeUser( async (Identificacion, done) => {
-    const rows = await pool.query('SELECT * FROM persona WHERE identificacion = ?', [Identificacion]);
-    console.log(rows);
+passport.deserializeUser( async (identificacion, done) => {
+    const rows = await pool.query('SELECT * FROM persona WHERE identificacion = ?', [identificacion]);
+    //console.log(rows);
     done(null, rows[0]);
  });
 

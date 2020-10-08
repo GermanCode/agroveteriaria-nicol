@@ -11,8 +11,20 @@ router.get('/empleados', isLoggedIn, async (req, res)=> {
     res.render('empleados/list_empleados', { empleados });
     });
 
-/*router.get('/empleados',  (req, res) => {
-        console.log('hola')
-        res.render('empleados/list_empleados');
-    });*/
+    router.get('/empleados/labores', isLoggedIn, async (req, res)=> {
+        const labores = await pool.query('SELECT * FROM labores');
+        console.log(labores);
+        res.render('empleados/list_labores', { labores });
+        });
+
+    router.get('/empleados/asignar_labor', isLoggedIn, async (req, res)=> {
+        const labores = await pool.query('SELECT * FROM labores');
+        const responsable = await pool.query('SELECT * FROM persona inner join personaCargo on fkPersona = identificacion and fkCargo=2');
+        res.render('empleados/labores', { labores, responsable });  
+        });
+    
+
+    router.post('/empleados/asignar_labor', isLoggedIn, async(req, res)=>{
+        res.send('ok');
+    });
     module.exports = router;
