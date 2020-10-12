@@ -1,18 +1,19 @@
 <div class="index container p-4">
+    <h1 class="text-center">Listado de Labores</h1>
     <div class="row">
-        {{#each labores}}
+        {{#each responsable}}
         <div class="col-md-4">
             <div class="card text-center">
                 <div class="card-body">
                     <a href="/empleado_id" target="_blank">
-                        <h3 class="card-title text-uppercase">
-                            {{Nombres}} &nbsp; {{Apellidos}}
-                        </h3>
+                        <h5 class="card-title text-uppercase">
+                            {{Estado}}
+                        </h5>
                     </a>
-                    <p class= "m-2">{{Telefono}}</p>
-                    <p>{{timeago created_at}}</p>
-                    <a href="/links/delete/{{id_links}}" class="btn btn-danger">Eliminar Empleado</a>
-                    <a href="/links/edit/{{id_links}}" class="btn btn-secondary">Modificar Empleado</a>
+                    <p class= "m-2">{{ desc_Labor }}</p>
+                    <p class="m-2">{{nombres}}</p>
+                    <a href="/links/delete/{{id_links}}" class="btn btn-danger">Completar</a>
+                    <a href="/links/edit/{{id_links}}" class="btn btn-secondary">Posponer</a>
                 </div>
             </div>
         </div>

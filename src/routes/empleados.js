@@ -13,8 +13,9 @@ router.get('/empleados', isLoggedIn, async (req, res)=> {
 
     router.get('/empleados/labores', isLoggedIn, async (req, res)=> {
         const labores = await pool.query('SELECT * FROM labores');
-        console.log(labores);
-        res.render('empleados/list_labores', { labores });
+        const responsable =  await pool.query('SELECT * FROM labores inner join personaLabor on idLabor = fkLabor inner join persona on fkPersona = identificacion');
+        console.log(responsable);
+        res.render('empleados/list_labores', { labores, responsable });
         });
 
     router.get('/empleados/asignar_labor', isLoggedIn, async (req, res)=> {
@@ -25,6 +26,14 @@ router.get('/empleados', isLoggedIn, async (req, res)=> {
     
 
     router.post('/empleados/asignar_labor', isLoggedIn, async(req, res)=>{
-        res.send('ok');
+        const { hiddenResp, hiddenLab } = req.body;
+        const nuevaLabor = {
+            fkpersona: hiddenResp,
+            fkLabor: hiddenLab
+        };
+        console.log(nuevaLabor);
+        await pool.query('INSERT INTO personaLabor set ?', [nuevaLabor]);
+        req.flash('success', ' Labor guardada con Exito!');
+        res.redirect('/empleados/labores');
     });
     module.exports = router;

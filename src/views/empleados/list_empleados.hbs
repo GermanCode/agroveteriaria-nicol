@@ -6,13 +6,13 @@
                 <div class="card-body">
                     <a href="/empleado_id" target="_blank">
                         <h3 class="card-title text-uppercase">
-                            {{Nombres}} &nbsp; {{Apellidos}}
+                            {{nombres}} &nbsp; {{apellidos}}
                         </h3>
                     </a>
                     <p class= "m-2">{{Telefono}}</p>
-                    <p>{{timeago created_at}}</p>
-                    <a href="/links/delete/{{id_links}}" class="btn btn-danger">Eliminar Empleado</a>
-                    <a href="/links/edit/{{id_links}}" class="btn btn-secondary">Modificar Empleado</a>
+                    <p>{{timeago fechaNacimiento}}</p>
+                    <a href="/links/delete/{{id_links}}" class="btn btn-danger">Desvincular Empleado</a>
+                    <a href="/links/edit/{{id_links}}" class="btn btn-secondary">Actualizar Info</a>
                 </div>
             </div>
         </div>

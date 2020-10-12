@@ -1,9 +1,3 @@
-<script type="text/javascript">
-    function llenarLabores() {
-        var selectLabor = document.getElementById('SelectResponsable');
-        cosole.log('nuevas labores ');
-    }
-</script>
 <div class="container p-5">
     <div class="row">
         <div class="col-md-12 mx-auto text-center">
@@ -13,25 +7,35 @@
                     <form action="/empleados/asignar_labor" method="POST">
                         <div class="form-group">
                             <h6>Responsable:</h6>
-                            <select name="selectResponsable" id="selectResponsable">
+                            <select name="selectResponsable" id="selectResponsable" onchange="javascript:llenarResp()">
+                                <option>Seleccione...</option>
                                 {{#each responsable}}
-                                <option value="this.idLabor">
-                                <p>{{this.identificacion}}</p> - <p>{{this.nombres}}</p>
+                                <option value="{{this.identificacion}}">
+                                    <p>{{this.identificacion}}</p> - <p>{{this.nombres}}</p>
                                 </option>
                                 {{/each}}
                             </select>
-
+                            <input type="hidden" name="hiddenResp" id="hiddenResp">
                         </div>
                         <div class="form-group">
-                            <input type="url" name="url" class="form-control" placeholder="URL">
+                            <h6>Labor:</h6>
+                            <select name="selectLabor" id="selectLabor" onchange="llenarLab()">
+                                <option>Seleccione...</option>
+                                {{#each labores}}
+                                <option value="{{this.idLabor}}">
+                                    <p>{{this.desc_Labor}}</p>
+                                </option>
+                                {{/each}}
+                            </select>
+                            <input type="hidden" name="hiddenLab" id="hiddenLab">
                         </div>
                         <div class="form-group">
-                            <textarea name="description" id="textdescription" rows="2" class="form-control"
-                                placeholder="description"></textarea>
+                            <textarea name="descripcion" id="textdescripcion" rows="2" class="form-control"
+                                placeholder="descripcion"></textarea>
                         </div>
                         <div class="form-group"></div>
                         <button class="btn btn-success btn-block">
-                            Save
+                            Registrar
                         </button>
                         <p></p>
                 </div>

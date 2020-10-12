@@ -15,6 +15,26 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"
         integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
+
+    <script type="text/javascript">
+        function llenarResp() {
+        var resp = document.getElementById("selectResponsable");
+        var idResp = resp.value;
+        var nombResp = resp.options[resp.selectedIndex].innerText;
+        var hr= document.getElementById("hiddenResp")
+        hr.value = idResp;
+        console.log(hr.value);
+        };
+
+        function llenarLab() {
+        var lab = document.getElementById("selectLabor");
+        var idLab = lab.value;
+        var descLab = lab.options[lab.selectedIndex].innerText;
+        var hl = document.getElementById("hiddenLab");
+        hl.value = idLab;
+    
+        };
+</script>
 </head>
 
 <body>
