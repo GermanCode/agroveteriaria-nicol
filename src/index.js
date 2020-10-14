@@ -24,7 +24,13 @@ app.engine('.hbs', exphbs({
     helpers: require('./lib/handlebars')
 }));
 app.set('view engine', '.hbs');
-
+var hbs = require('handlebars');
+hbs.registerHelper('ifEquals', function(a, b, options) {
+    if (a === b) {
+      return options.fn(this);
+    }  
+    return options.inverse(this);
+  });
 
 //Middlewares
 app.use(session({

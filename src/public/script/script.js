@@ -4,7 +4,6 @@ function llenarResp() {
     var nombResp = resp.options[resp.selectedIndex].innerText;
     var hr= document.getElementById("hiddenResp")
     hr.value = idResp;
-    alert(idResp);
     };
 
     function llenarLab() {

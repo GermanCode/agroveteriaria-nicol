@@ -9,17 +9,31 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 {{#if user}}
+                    {{#ifEquals user.fkCargo 1}}
+                        <li class="nav-item dropdown">
+                        <a class = "nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" arias aria-haspopup="true" aria-expanded="false">
+                            Empleados
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a href="/signup" class="dropdown-item">Agregar Empleado</a>
+                            <a href="/empleados" class="dropdown-item">Ver Empleados</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/empleados/labores" class="dropdown-item">Revisar Labores</a>
+                            <a href="/empleados/asignar_labor" class="dropdown-item">Asignar Nueva Labor</a>
+                        </div>
+                    </li>
+                    {{/ifEquals}}
+                    {{#ifEquals user.fkCargo 2}}
                     <li class="nav-item dropdown">
                     <a class = "nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" arias aria-haspopup="true" aria-expanded="false">
-                        Empleados
+                        Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="/signup" class="dropdown-item">Agregar Empleado</a>
-                        <a href="/empleados" class="dropdown-item">Ver Empleados</a>
                         <div class="dropdown-divider"></div>
                         <a href="/empleados/labores" class="dropdown-item">Revisar Labores</a>
-                        <a href="/empleados/asignar_labor" class="dropdown-item">Asignar Nueva Labor</a>
                     </div>
+                    {{/ifEquals}}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">Perfil</a>
@@ -34,9 +48,7 @@
                     <li class="nav-item">
                         <a href="/signup" class="nav-link">Registrarse</a>
                     </li>
-                {{/if}}
-                
-                
+                {{/if}}   
             </ul>
         </div>
     </div>

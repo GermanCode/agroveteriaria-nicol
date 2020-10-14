@@ -1,18 +1,19 @@
-<div class="index container p-4">
+<div class="index container p-4" style="overflow: scroll;">
     <h1 class="text-center">Listado de Labores</h1>
     <div class="row">
         {{#each responsable}}
         <div class="col-md-4">
             <div class="card text-center">
                 <div class="card-body">
-                    <a href="/empleado_id" target="_blank">
+                    <a href="/empleados/completar_labor/{{identificacion}}" target="_blank">
                         <h5 class="card-title text-uppercase">
-                            {{Estado}}
+                            {{estado}}
                         </h5>
                     </a>
+                    <input type="hidden" name="idLabor" id="idLabor" value="{{idLabor}}">
                     <p class= "m-2">{{ desc_Labor }}</p>
-                    <p class="m-2">{{nombres}}</p>
-                    <a href="/links/delete/{{id_links}}" class="btn btn-danger">Completar</a>
+                    <h3 class="m-2">{{nombres}}</h3>
+                    <a href="/empleados/completar_labor/{{identificacion}}/{{idLabor}}" class="btn btn-danger">Completar</a>
                     <a href="/links/edit/{{id_links}}" class="btn btn-secondary">Posponer</a>
                 </div>
             </div>
@@ -20,8 +21,8 @@
         {{else}}
             <div class="col-md-4 mx-auto">
                 <div class="card card-body text-center">
-                    <p>No hay Link's guardados aún... -- There are not links saved yet...</p>
-                    <a href="/links/add">Create One!</a>
+                    <p>No hay Labores Registradas aún... </p>
+                    <a href="/links/add">Crear Una Labor?</a>
                 </div>
             </div>
         {{/each}}

@@ -8,7 +8,8 @@ passport.use('local.signin', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, async (req, identificacion, password, done) => {
-    const rows = await pool.query('SELECT * FROM persona WHERE identificacion = ?', [identificacion]);
+    const rows = await pool.query('SELECT * FROM persona INNER JOIN personaCargo ON persona.identificacion = personaCargo.fkPersona WHERE persona.identificacion = ?', [identificacion]);
+    console.log(rows);
     if (rows.length > 0) {
         const persona = rows[0];
         const validPassword = await helpers.mathPassword(password, persona.password);
@@ -47,7 +48,7 @@ passport.serializeUser( async (user, done) => {
 });
 
 passport.deserializeUser( async (identificacion, done) => {
-    const rows = await pool.query('SELECT * FROM persona WHERE identificacion = ?', [identificacion]);
+    const rows = await pool.query('SELECT * FROM persona INNER JOIN personaCargo ON persona.identificacion = personaCargo.fkPersona WHERE persona.identificacion = ?', [identificacion]);
     //console.log(rows);
     done(null, rows[0]);
  });

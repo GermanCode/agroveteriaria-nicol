@@ -14,7 +14,6 @@ router.get('/empleados', isLoggedIn, async (req, res)=> {
     router.get('/empleados/labores', isLoggedIn, async (req, res)=> {
         const labores = await pool.query('SELECT * FROM labores');
         const responsable =  await pool.query('SELECT * FROM labores inner join personaLabor on idLabor = fkLabor inner join persona on fkPersona = identificacion');
-        console.log(responsable);
         res.render('empleados/list_labores', { labores, responsable });
         });
 
@@ -26,14 +25,26 @@ router.get('/empleados', isLoggedIn, async (req, res)=> {
     
 
     router.post('/empleados/asignar_labor', isLoggedIn, async(req, res)=>{
-        const { hiddenResp, hiddenLab } = req.body;
+        const { hiddenResp, hiddenLab, textobservacion } = req.body;
         const nuevaLabor = {
             fkpersona: hiddenResp,
-            fkLabor: hiddenLab
+            fkLabor: hiddenLab,
+            estado: 'Pendiente',
+            observacion: textobservacion
         };
         console.log(nuevaLabor);
         await pool.query('INSERT INTO personaLabor set ?', [nuevaLabor]);
         req.flash('success', ' Labor guardada con Exito!');
         res.redirect('/empleados/labores');
+    });
+
+    router.get('/empleados/completar_labor/:identificacion/:idLabor', isLoggedIn, async (req, res) =>{   
+        const {identificacion, idLabor} = req.params;
+        console.log(identificacion);
+        console.log(idLabor);
+        const r = await pool.query('select * FROM persona inner join personaLabor on persona.identificacion = personaLabor.fkPersona inner join labores on labores.idLabor = personaLabor.fkLabor  WHERE fkLabor = ? and persona.identificacion = ?', [idLabor, identificacion]);
+        console.log(r);
+        //req.flash('success', 'Link Removed sucessfully');
+        res.render('empleados/completar_labor');
     });
     module.exports = router;
